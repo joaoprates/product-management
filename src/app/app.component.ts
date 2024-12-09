@@ -14,4 +14,6 @@ import { HttpClientModule } from '@angular/common/http';
   `,
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {}
+export class AppComponent {
+  title = 'product-management'; // Valor esperado no teste
+}

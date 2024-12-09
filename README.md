@@ -72,7 +72,7 @@ README.md
      ```
 3. Install the dependencies:
      ```sh
-     npm install
+     npm install --legacy-peer-deps 
      ```
 
 ## Further help
