@@ -1,6 +1,18 @@
 # ProductManagement
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.0.1.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.0.1.
+
+## Table of Contents
+
+- [Development server](#development-server)
+- [Code scaffolding](#code-scaffolding)
+- [Build](#build)
+- [Running unit tests](#running-unit-tests)
+- [Running end-to-end tests](#running-end-to-end-tests)
+- [Technologies Used](#technologies-used)
+- [Project Structure](#project-structure)
+- [Installation](#installation)
+- [Further help](#further-help)
 
 ## Development server
 
@@ -21,6 +33,47 @@ Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.
 ## Running end-to-end tests
 
 Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+
+## Technologies Used
+
+- Angular CLI 18.0.1
+- Node.js
+- TypeScript
+- HTML
+- CSS
+
+## Project Structure
+
+```
+/src
+    /app
+        /components
+        /services
+        /models
+    /assets
+    /environments
+    index.html
+    main.ts
+    styles.css
+angular.json
+package.json
+README.md
+```
+
+## Installation
+
+1. Clone the repository:
+     ```sh
+     git clone <repository-url>
+     ```
+2. Navigate to the project directory:
+     ```sh
+     cd product-management
+     ```
+3. Install the dependencies:
+     ```sh
+     npm install
+     ```
 
 ## Further help
 
