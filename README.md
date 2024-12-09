@@ -36,7 +36,7 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 
 ## Technologies Used
 
-- Angular CLI 18.0.1
+- Angular CLI 17.0.1
 - Node.js
 - TypeScript
 - HTML
