@@ -1,5 +1,11 @@
 <div class="product-list">
-    <button mat-raised-button color="primary" routerLink="/products/create">Add Product</button>
+  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;margin-top: 16px;">
+    <h2></h2>
+    <button mat-raised-button color="accent" routerLink="/products/create">
+      <mat-icon>add</mat-icon>
+      Add Product
+    </button>
+  </div>
     <table mat-table [dataSource]="products" class="mat-elevation-z8">
       <ng-container matColumnDef="name">
         <th mat-header-cell *matHeaderCellDef>Name</th>
@@ -13,9 +19,9 @@
         <th mat-header-cell *matHeaderCellDef>Price</th>
         <td mat-cell *matCellDef="let product">{{ product.price | currency }}</td>
       </ng-container>
-      <ng-container matColumnDef="categoryPath">
+      <ng-container matColumnDef="category">
         <th mat-header-cell *matHeaderCellDef>Category</th>
-        <td mat-cell *matCellDef="let product">{{ product.categoryPath }}</td>
+        <td mat-cell *matCellDef="let product">{{ product.category }}</td>
       </ng-container>
       <ng-container matColumnDef="available">
         <th mat-header-cell *matHeaderCellDef>Available</th>

@@ -5,18 +5,19 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { MaterialModule } from '../../shared/material.module';
 import { CommonModule } from '@angular/common';
 import { SharedModule } from '../../shared/shared.module';
+import { HttpClientModule } from '@angular/common/http';
+import { Category } from '../shared/category.model';
 
 
 @Component({
   selector: 'app-product-form',
-  standalone: true,
-  imports: [ReactiveFormsModule, SharedModule, CommonModule],
+  //imports: [ReactiveFormsModule, SharedModule, CommonModule],
   templateUrl: './product-form.component.html',
   styleUrls: ['./product-form.component.scss'],
 })
 export class ProductFormComponent implements OnInit {
   productForm!: FormGroup;
-  categories: string[] = ['Category1', 'Category2', 'Category3']; // Replace with real data
+  categories: Category[] = [];
   productId: string | null = null;
 
   constructor(
@@ -28,19 +29,25 @@ export class ProductFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.productId = this.route.snapshot.paramMap.get('id');
-
+  
     this.productForm = this.fb.group({
       name: ['', Validators.required],
       description: [''],
       price: [0, Validators.required],
-      categoryPath: ['', Validators.required],
-      available: [false]
+      category: ['', Validators.required],
+      available: [false, Validators.required]
     });
-
+  
     if (this.productId) {
       this.loadProduct();
     }
+  
+    // Carregar categorias reais
+    this.productService.getCategories().subscribe(categories => {
+      this.categories = categories;
+    });
   }
+  
 
   loadProduct(): void {
     this.productService.getProductById(Number(this.productId)).subscribe((product) => {
@@ -51,12 +58,14 @@ export class ProductFormComponent implements OnInit {
   onSubmit(): void {
     if (this.productForm.valid) {
       if (this.productId) {
-        this.productService.updateProduct(Number(this.productId), this.productForm.value).subscribe(() => {
-          this.router.navigate(['/products']);
+        this.productService.updateProduct(Number(this.productId), this.productForm.value).subscribe({
+          next: () => this.router.navigate(['/products']),
+          error: (err) => console.error(err) // Verifique o erro aqui;
         });
       } else {
-        this.productService.createProduct(this.productForm.value).subscribe(() => {
-          this.router.navigate(['/products']);
+        this.productService.createProduct(this.productForm.value).subscribe({
+          next: () => this.router.navigate(['/products']),
+          error: (err) => console.error(err) // Verifique o erro aqui;
         });
       }
     }

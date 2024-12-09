@@ -10,7 +10,7 @@ import { Product } from '../shared/product.model';
 })
 export class ProductListComponent implements OnInit {
   products: Product[] = []; // Corrigir o tipo para Product[]
-  displayedColumns: string[] = ['name', 'description', 'price', 'categoryPath', 'available', 'actions'];
+  displayedColumns: string[] = ['name', 'description', 'price', 'category', 'available', 'actions'];
 
   constructor(private productService: ProductService, private router: Router) {}
 

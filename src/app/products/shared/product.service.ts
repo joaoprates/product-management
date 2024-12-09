@@ -1,20 +1,25 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { Product } from './product.model'; // Certifique-se de usar o caminho correto
+import { map, Observable } from 'rxjs';
+import { Product } from './product.model'; 
+import { Category } from './category.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ProductService {
-  private apiUrl = 'http://localhost:9090/products'; // Ajuste o URL conforme necessário
-
+  private apiUrl = 'http://localhost:9090/products'; 
+  
   constructor(private http: HttpClient) {}
 
   getProducts(): Observable<Product[]> {
     return this.http.get<Product[]>(this.apiUrl);
   }
 
+  getCategories(): Observable<Category[]> {
+    return this.http.get<Category[]>('http://localhost:9090/categories');
+  }
+  
   getProductById(id: number): Observable<Product> {
     return this.http.get<Product>(`${this.apiUrl}/${id}`);
   }

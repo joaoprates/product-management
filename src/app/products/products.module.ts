@@ -11,14 +11,14 @@ import { MatSelectModule } from '@angular/material/select';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { ProductListComponent } from './product-list/product-list.component';
-import { HttpClientModule } from '@angular/common/http';
+import { ProductFormComponent } from './product-form/product-form.component';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
-  declarations: [ProductListComponent],
+  declarations: [ProductListComponent, ProductFormComponent],
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    HttpClientModule,
     MatTableModule,
     MatButtonModule,
     MatIconModule,
@@ -27,8 +27,13 @@ import { HttpClientModule } from '@angular/common/http';
     FormsModule,
     MatInputModule,
     MatSelectModule,
+    SharedModule,
+    ReactiveFormsModule,
     RouterModule.forChild([
       { path: '', component: ProductListComponent },
+      { path: 'create', component: ProductFormComponent }, // Rota para criar produtos
+      { path: 'edit/:id', component: ProductFormComponent }, // Rota para editar produtos
+
     ]),
   ],
 })

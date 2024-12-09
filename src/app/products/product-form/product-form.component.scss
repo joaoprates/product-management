@@ -1,13 +1,11 @@
-.product-form-container {
-    max-width: 600px;
-    margin: 2rem auto;
-  }
-  
-  mat-card {
-    padding: 1rem;
-  }
-  
-  .form-group {
-    margin-bottom: 1rem;
-  }
-  
+.form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh; /* Centraliza verticalmente */
+}
+
+mat-card {
+  width: 400px;
+  padding: 16px;
+}
