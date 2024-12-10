@@ -1,15 +1,25 @@
-import { HttpInterceptorFn } from '@angular/common/http';
+import { HttpRequest, HttpHandler, HttpEvent } from '@angular/common/http';
+import { ContentTypeInterceptor } from './http.interceptor';
+import { of } from 'rxjs';
 
-export const ContentTypeInterceptor: HttpInterceptorFn = (req, next) => {
-  const token = '{{token}}'; // Substitua pelo valor do token (ou recupere dinamicamente)
+describe('ContentTypeInterceptor', () => {
+  it('should add headers to the request', () => {
+    const mockRequest = new HttpRequest('GET', '/test-endpoint');
 
-  const modifiedReq = req.clone({
-    setHeaders: {
-      'X-API-Key': token,
-      'Postman-Token': 'cbe8203e-5bf8-47c9-9e85-500dd28603f6', // Gerado automaticamente
-      Host: 'localhost:9090', // Ajuste para o seu domínio
-      'Content-Type': 'application/json', // Content-Type obrigatório
-    },
+    const mockHandler: HttpHandler = {
+      handle: jest.fn((req: HttpRequest<any>) => {
+        // Aqui verificamos o estado do `req` modificado
+        expect(req.headers.has('X-API-Key')).toBe(true);
+        expect(req.headers.get('X-API-Key')).toBe('{{token}}');
+        expect(req.headers.has('Content-Type')).toBe(true);
+        expect(req.headers.get('Content-Type')).toBe('application/json');
+        return of({} as HttpEvent<any>); // Retorna um Observable vazio
+      }),
+    };
+
+    ContentTypeInterceptor(mockRequest, mockHandler.handle);
+
+    // Verifica se o `handle` foi chamado
+    expect(mockHandler.handle).toHaveBeenCalled();
   });
-    return next(modifiedReq);
-};
+});
