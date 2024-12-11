@@ -9,16 +9,20 @@ import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
 import { MatSelectModule } from '@angular/material/select';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { OverlayModule } from '@angular/cdk/overlay';
 
 import { ProductListComponent } from './product-list/product-list.component';
 import { ProductFormComponent } from './product-form/product-form.component';
 import { SharedModule } from '../shared/shared.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [ProductListComponent, ProductFormComponent],
   imports: [
     CommonModule,
+    OverlayModule,
     ReactiveFormsModule,
+    BrowserAnimationsModule,
     MatTableModule,
     MatButtonModule,
     MatIconModule,
@@ -28,7 +32,6 @@ import { SharedModule } from '../shared/shared.module';
     MatInputModule,
     MatSelectModule,
     SharedModule,
-    ReactiveFormsModule,
     RouterModule.forChild([
       { path: '', component: ProductListComponent },
       { path: 'create', component: ProductFormComponent }, // Rota para criar produtos

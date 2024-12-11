@@ -4,12 +4,14 @@ import { BrowserAnimationsModule, provideAnimations } from '@angular/platform-br
 import { HttpClientModule, provideHttpClient, withInterceptors } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { appRoutes } from './app.routes'; // Importando as rotas standalone
-import { ContentTypeInterceptor } from './shared/http.interceptor.spec';
+import { OverlayModule } from '@angular/cdk/overlay';
+import { ContentTypeInterceptor } from './shared/http.interceptor';
 
 
 @NgModule({
   imports: [
     BrowserModule,
+    OverlayModule,
     BrowserAnimationsModule,
     HttpClientModule,
     RouterModule.forRoot(appRoutes), // Configuração das rotas standalone
